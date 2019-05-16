@@ -15,27 +15,27 @@
 
     describe('Get Weather', function() {
 
-    	it('with valid zip code', function(done) {
+    	it('with valid city name', function(done) {
         if(!appUrl) {
             assert.fail("Environment variable APP_URL is not defined");
             return done();
         }
         request({
       		method: 'GET',
-              url: appUrl + '/api/v1/getWeather?zip=78613'
+              url: appUrl + '/api/v1/getWeather?zip=Hamilton'
           }, function(err, resp, body) {
           	if(err) {
           		assert.fail('Failed to get the response');
           	} else {
               assert.equal(resp.statusCode, 200);
               var pbody = JSON.parse(body);
-              assert((pbody.city === 'Anderson Mill') || (pbody.city === 'Round Rock'), "City name does not match");
+              assert(pbody.city === 'Hamilton', "City name does not match");
               done();
             }
         });
     	});
 
-      it('without zip code', function(done) {
+      it('without city', function(done) {
         if(!appUrl) {
             assert.fail("Environment variable APP_URL is not defined");
             return done();
@@ -53,21 +53,39 @@
         });
     	});
 
-      it('with another valid zip code', function(done) {
+      it('with another valid city name', function(done) {
         if(!appUrl) {
             assert.fail("Environment variable APP_URL is not defined");
             return done();
         }
         request({
       		method: 'GET',
-              url: appUrl + '/api/v1/getWeather?zip=78641'
+              url: appUrl + '/api/v1/getWeather?zip=Wellington'
           }, function(err, resp, body) {
           	if(err) {
           		assert.fail('Failed to get the response');
           	} else {
               assert.equal(resp.statusCode, 200);
               var pbody = JSON.parse(body);
-              assert(pbody.city === 'Round Rock', "City name does not match");
+              assert(pbody.city === 'Wellington', "City name does not match");
+              done();
+            }
+        });
+    	});
+    	
+    	it('with invalid city name', function(done) {
+        if(!appUrl) {
+            assert.fail("Environment variable APP_URL is not defined");
+            return done();
+        }
+        request({
+      		method: 'GET',
+              url: appUrl + '/api/v1/getWeather?zip=Oof'
+          }, function(err, resp, body) {
+          	if(err) {
+          		assert.fail('Failed to get the response');
+          	} else {
+              assert.equal(resp.statusCode, 400);
               done();
             }
         });
