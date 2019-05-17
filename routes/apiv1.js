@@ -46,7 +46,7 @@ exports.getWeather2 = function(req, res) {
 	}
 
 	var aurl = OPENWEATHERURL + '&zip=' + zip + ',us';
-
+	
 	request({
 		method: 'GET',
         url: aurl,

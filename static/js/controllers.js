@@ -30,6 +30,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
             data = $scope.zip4m;
         } 
 
+		var coords;
         if(data.length > 0) {
             $http({
                 method: "GET",
@@ -38,15 +39,19 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
                 if(which === 1) {
                     $scope.zip1City = response.data.city;
                     $scope.zip1Weather = response.data.weather;
+                    addMarker(response.data.coord, which);
                 } else if(which === 2) {
                     $scope.zip2City = response.data.city;
                     $scope.zip2Weather = response.data.weather;
+                    addMarker(response.data.coord, which);
                 } else if(which === 3) {
                     $scope.zip3City = response.data.city;
                     $scope.zip3Weather = response.data.weather;
+                    addMarker(response.data.coord, which);
                 } else if(which === 4) {
                     $scope.zip4City = response.data.city;
                     $scope.zip4Weather = response.data.weather;
+                    addMarker(response.data.coord, which);
                 } 
             });
         } else {
@@ -75,3 +80,14 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
       zoom: 8
     });
   }
+  
+  var markers= [];
+  function addMarker(coords, pinNum) {
+	  var marker = new google.maps.Marker({
+	    position: { lat: coords.lat, lng: coords.lon },
+	    title: pinNum,
+	    map: map
+	  });
+	  markers[pinNum] = marker;
+  }
+
