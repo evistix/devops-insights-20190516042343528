@@ -57,15 +57,19 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
             if(which === 1) {
                     $scope.zip1City = "";
                     $scope.zip1Weather = "";
+                    removeMarker(which);
                 } else if(which === 2) {
                     $scope.zip2City = "";
                     $scope.zip2Weather = "";
+                    removeMarker(which);
                 } else if(which === 3) {
                     $scope.zip3City = "";
                     $scope.zip3Weather = "";
+                    removeMarker(which);
                 } else if(which === 4) {
                     $scope.zip4City = "";
                     $scope.zip4Weather = "";
+                    removeMarker(which);
                 } 
         }
     };
@@ -85,8 +89,13 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
 	  var marker = new google.maps.Marker({
 	    position: { lat: latlng.lat, lng: latlng.lon },
 	    map: map,
-	    title: pinNum
+	    title: pinNum.toString()
 	  });
 	  markers[pinNum] = marker;
   }
-
+  
+  function removeMarker(pinNum) {
+  		markers[pinNum].setMap(null);
+  		markers[pinNum] = null;
+  }
+  }
