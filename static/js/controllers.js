@@ -84,7 +84,17 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
     });
     
 	  google.maps.event.addListener(map, 'click', function(event) {
-	  	addMarker(event.latLng);
+	  	var emptyPinNum = null;
+	  	for(i = 1; i < 5; i++) {
+	  		if(markers[i] === null) {
+	  			emptyPinNum = i;
+	  			break;
+	  		}
+	  	}
+	  	if(emptyPinNum !== null) {
+	  		addMarker(event.latLng);
+  		}
+
 	  });
   }
   
@@ -99,7 +109,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
   }
   
   function removeMarker(pinNum) {
-  		if(markers[pinNum] != null){
+  		if(markers[pinNum] !== null){
 	  		markers[pinNum].setMap(null);
 	  		markers[pinNum] = null;
   		}
