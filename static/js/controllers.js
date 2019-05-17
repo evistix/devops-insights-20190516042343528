@@ -103,7 +103,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
 	  		}
 	  	}
 	  	if(emptyPinNum !== 0) {
-	  		clickAddMarker(event.latLng., emptyPinNum);
+	  		clickAddMarker(event.latLng, emptyPinNum);
 	  		console.log(emptyPinNum + " " + event.latLng);
   		}
 
