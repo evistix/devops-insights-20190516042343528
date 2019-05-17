@@ -1,5 +1,6 @@
 
 var ConsoleModule = angular.module('ConsoleModule', ['ngRoute']);
+var markers= [];
 
 ConsoleModule.config(['$routeProvider', '$locationProvider','$sceDelegateProvider', '$httpProvider',
     function ($routeProvider, $locationProvider, $sceDelegateProvider, $httpProvider) {
@@ -57,18 +58,22 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
             if(which === 1) {
                     $scope.zip1City = "";
                     $scope.zip1Weather = "";
+                    if(markers[which] !==null)
                     removeMarker(which);
                 } else if(which === 2) {
                     $scope.zip2City = "";
                     $scope.zip2Weather = "";
+                    if(markers[which] !==null)
                     removeMarker(which);
                 } else if(which === 3) {
                     $scope.zip3City = "";
                     $scope.zip3Weather = "";
+                    if(markers[which] !==null)
                     removeMarker(which);
                 } else if(which === 4) {
                     $scope.zip4City = "";
                     $scope.zip4Weather = "";
+                    if(markers[which] !==null)
                     removeMarker(which);
                 } 
         }
@@ -77,14 +82,13 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
 }]);
 
   var map;
-  var markers= [];
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -36.8485, lng: 174.7633},
       zoom: 8
     });
     
-	  map.addListener('click', function(event) {
+	  map.addListener(map, 'click', function(event) {
 	  	var emptyPinNum = 0;
 	  	for(var i = 1; i < 5; i++) {
 	  		if(markers[i] === null) {
@@ -109,9 +113,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
   }
   
   function removeMarker(pinNum) {
-  		if(markers[pinNum] !== null){
-	  		markers[pinNum].setMap(null);
-	  		markers[pinNum] = null;
-  		}
+	  	markers[pinNum].setMap(null);
+	  	markers[pinNum] = null;
 
   }
