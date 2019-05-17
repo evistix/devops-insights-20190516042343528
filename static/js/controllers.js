@@ -1,7 +1,10 @@
 
 var ConsoleModule = angular.module('ConsoleModule', ['ngRoute']);
 var markers= [];
-
+markers[1] = null;
+markers[2] = null;
+markers[3] = null;
+markers[4] = null;
 
 ConsoleModule.config(['$routeProvider', '$locationProvider','$sceDelegateProvider', '$httpProvider',
     function ($routeProvider, $locationProvider, $sceDelegateProvider, $httpProvider) {
@@ -126,26 +129,6 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
 	    map: map,
 	    title: pinNum.toString()
 	  });
-	  
-	  var infoAtLat = latlng.lat();
-	  var infoAtLng = latlng.lng();
-	  $http({
-        method: "GET",
-      	url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+infoAtLat+','+infoAtLng+'&key=AIzaSyAfYnonuOjEkAy6sghsXJZ37nWyfVOK8mE'
-      }).then(response => response.json())
-      .then (json => {
-      	var city = json.results[0].address_components[2].long_name;
-      	if(pinNum === 1) {
-            $scope.zip1City = city;
-        } else if(pinNum === 2) {
-            $scope.zip2City = city;
-        } else if(pinNum === 3) {
-            $scope.zip3City = city;
-        } else if(pinNum === 4) {
-            $scope.zip4City = city;
-        } 
-  	  });
-
 	  markers[pinNum] = marker;
 	  
 
