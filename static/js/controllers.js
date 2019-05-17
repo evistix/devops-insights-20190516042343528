@@ -71,7 +71,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
   var map;
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 175.281319},
+      center: {lat: -36.8485, lng: 174.7633},
       zoom: 8
     });
   }
