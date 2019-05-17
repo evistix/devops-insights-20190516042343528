@@ -1,10 +1,6 @@
 
 var ConsoleModule = angular.module('ConsoleModule', ['ngRoute']);
 var markers= [];
-markers[1] = null;
-markers[2] = null;
-markers[3] = null;
-markers[4] = null;
 
 ConsoleModule.config(['$routeProvider', '$locationProvider','$sceDelegateProvider', '$httpProvider',
     function ($routeProvider, $locationProvider, $sceDelegateProvider, $httpProvider) {
@@ -102,11 +98,13 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
 	  	for(var i = 1; i < 5; i++) {
 	  		if(markers[i] === null) {
 	  			emptyPinNum = i;
+	  			console.log("works");
 	  			break;
 	  		}
 	  	}
 	  	if(emptyPinNum !== 0) {
 	  		clickAddMarker(event.latLng, emptyPinNum);
+	  		console.log(emptyPinNum + " " + event.latLng);
   		}
 
 	  });
