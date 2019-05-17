@@ -30,7 +30,6 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
             data = $scope.zip4m;
         } 
 
-		var coords;
         if(data.length > 0) {
             $http({
                 method: "GET",
