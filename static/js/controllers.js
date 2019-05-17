@@ -30,7 +30,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
             data = $scope.zip4m;
         } 
 
-        if(data.length > 0) {
+        if(data.length > 1) {
             $http({
                 method: "GET",
                 url: '/api/v1/getWeather?zip=' + data
@@ -81,11 +81,11 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
   }
   
   var markers= [];
-  function addMarker(coords, pinNum) {
+  function addMarker(latlng, pinNum) {
 	  var marker = new google.maps.Marker({
-	    position: { lat: coords.lat, lng: coords.lon },
-	    title: pinNum,
-	    map: map
+	    position: { lat: latlng.lat, lng: latlng.lon },
+	    map: map,
+	    title: pinNum
 	  });
 	  markers[pinNum] = marker;
   }
