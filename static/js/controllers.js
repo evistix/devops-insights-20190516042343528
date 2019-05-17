@@ -82,6 +82,10 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
       center: {lat: -36.8485, lng: 174.7633},
       zoom: 8
     });
+    
+	  google.maps.event.addListener(map, 'click', function(event) {
+	  	addMarker(event.latLng);
+	  });
   }
   
   var markers= [];
