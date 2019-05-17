@@ -95,6 +95,9 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
   }
   
   function removeMarker(pinNum) {
-  		markers[pinNum].setMap(null);
-  		markers[pinNum] = null;
+  		if(markers[pinNum] != null){
+	  		markers[pinNum].setMap(null);
+	  		markers[pinNum] = null;
+  		}
+
   }
