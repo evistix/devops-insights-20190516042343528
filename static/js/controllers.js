@@ -77,6 +77,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
 }]);
 
   var map;
+  var markers= [];
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -36.8485, lng: 174.7633},
@@ -84,21 +85,20 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
     });
     
 	  google.maps.event.addListener(map, 'click', function(event) {
-	  	var emptyPinNum = null;
-	  	for(i = 1; i < 5; i++) {
+	  	var emptyPinNum = 0;
+	  	for(var i = 1; i < 5; i++) {
 	  		if(markers[i] === null) {
 	  			emptyPinNum = i;
 	  			break;
 	  		}
 	  	}
-	  	if(emptyPinNum !== null) {
-	  		addMarker(event.latLng);
+	  	if(emptyPinNum !== 0) {
+	  		addMarker(event.latLng, emptyPinNum);
   		}
 
 	  });
   }
   
-  var markers= [];
   function addMarker(latlng, pinNum) {
 	  var marker = new google.maps.Marker({
 	    position: { lat: latlng.lat, lng: latlng.lon },
