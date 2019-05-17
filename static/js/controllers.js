@@ -2,6 +2,7 @@
 var ConsoleModule = angular.module('ConsoleModule', ['ngRoute']);
 var markers= [];
 
+
 ConsoleModule.config(['$routeProvider', '$locationProvider','$sceDelegateProvider', '$httpProvider',
     function ($routeProvider, $locationProvider, $sceDelegateProvider, $httpProvider) {
     $routeProvider.when('/', {
