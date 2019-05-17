@@ -58,23 +58,28 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
             if(which === 1) {
                     $scope.zip1City = "";
                     $scope.zip1Weather = "";
-                    if(markers[which] !==null)
-                    removeMarker(which);
+                    if(markers[which] !==null) {
+                    	removeMarker(which);
+                	}
                 } else if(which === 2) {
                     $scope.zip2City = "";
                     $scope.zip2Weather = "";
-                    if(markers[which] !==null)
-                    removeMarker(which);
+                    if(markers[which] !==null) {
+                    	removeMarker(which);
+                	}
                 } else if(which === 3) {
                     $scope.zip3City = "";
                     $scope.zip3Weather = "";
-                    if(markers[which] !==null)
-                    removeMarker(which);
+                    if(markers[which] !==null) {
+                    	removeMarker(which);
+                	}
                 } else if(which === 4) {
                     $scope.zip4City = "";
                     $scope.zip4Weather = "";
-                    if(markers[which] !==null)
-                    removeMarker(which);
+                    if(markers[which] !==null) {
+                    	removeMarker(which);
+                	}
+
                 } 
         }
     };
@@ -98,7 +103,7 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
 	  		}
 	  	}
 	  	if(emptyPinNum !== 0) {
-	  		addMarker(event.latLng, emptyPinNum);
+	  		clickAddMarker(event.latLng., emptyPinNum);
 	  		console.log(emptyPinNum + " " + event.latLng);
   		}
 
@@ -108,6 +113,15 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
   function addMarker(latlng, pinNum) {
 	  var marker = new google.maps.Marker({
 	    position: { lat: latlng.lat, lng: latlng.lon },
+	    map: map,
+	    title: pinNum.toString()
+	  });
+	  markers[pinNum] = marker;
+  }
+  
+  function clickAddMarker(latlng, pinNum) {
+	  var marker = new google.maps.Marker({
+	    position: { lat: latlng.lat(), lng: latlng.lng() },
 	    map: map,
 	    title: pinNum.toString()
 	  });
