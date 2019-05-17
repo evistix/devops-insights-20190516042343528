@@ -88,16 +88,18 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
       zoom: 8
     });
     
-	  map.addListener(map, 'click', function(event) {
+	  map.addListener('click', function(event) {
 	  	var emptyPinNum = 0;
 	  	for(var i = 1; i < 5; i++) {
 	  		if(markers[i] === null) {
 	  			emptyPinNum = i;
+	  			console.log("works");
 	  			break;
 	  		}
 	  	}
 	  	if(emptyPinNum !== 0) {
 	  		addMarker(event.latLng, emptyPinNum);
+	  		console.log(emptyPinNum + " " + event.latLng);
   		}
 
 	  });
@@ -113,7 +115,8 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
   }
   
   function removeMarker(pinNum) {
-	  	markers[pinNum].setMap(null);
-	  	markers[pinNum] = null;
-
+	  	if(markers[pinNum] !== null){
+	  		markers[pinNum].setMap(null);
+	  		markers[pinNum] = null;
+  		}
   }
