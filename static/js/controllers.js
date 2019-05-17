@@ -98,4 +98,3 @@ ConsoleModule.controller('wcontroller', ['$scope', '$http', '$routeParams', '$ti
   		markers[pinNum].setMap(null);
   		markers[pinNum] = null;
   }
-  }
